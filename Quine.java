@@ -20,7 +20,7 @@ class Pair{
 
 class Tabu{
     
-    int n,m,row,col;
+    int n,m,d,row,col;
     int kmap[];
     ArrayList<String> terms;  // stores terms in binary form
     ArrayList<String> vect;   // temporary vector 1 to find prime implicants
@@ -42,8 +42,15 @@ class Tabu{
 		for(i=0;i<n;i++){
 			a[i] = sc.nextInt();
 		}
+        System.out.println("enter the number of dont care terms");
+		d = sc.nextInt();
+		System.out.println("Enter Dont Care Terms");
+        int []dc = new int[d];
+        for(i=0;i<d;i++){
+        	dc[i] = sc.nextInt();
+        }
 		terms = new ArrayList<String>(n);
-		vect = new ArrayList<String>(n);
+		vect = new ArrayList<String>(n+d);
 		temp1 = new ArrayList<String>();
 		prime = new ArrayList<String>();
 		temp2 = new ArrayList<Integer>();
@@ -51,6 +58,9 @@ class Tabu{
 		for(i=0;i<n;i++){
 			terms.add(to_binary(a[i],m));
 			vect.add(to_binary(a[i],m));
+		}
+		for(i=0;i<d;i++){
+			vect.add(to_binary(dc[i],m));
 		}
 
         // Line 54 to 95 finds prime implicants
